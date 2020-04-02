@@ -36,8 +36,26 @@ class App extends Component {
     })
   }
   //handleCardDelete
+  
   handleClickDelete = event =>{
-    console.log('deleted')
+    //omit function for cards obj
+    function omit(obj, keyToOmit) {
+        return Object.entries(obj).reduce(
+        (newObj, [key, value]) =>
+            key === keyToOmit ? newObj : {...newObj, [key]: value},
+        {}
+      );
+    }
+    const newCardArr = this.state.lists.map(lists => ({
+          ...lists,
+          cardIds: lists.cardIds.filter(id => id !== event.target.id)
+        }))
+    const removedCardobj = omit(this.state.cards, event.target.id)
+    // this.setState({lists: newCardArr})
+    this.setState({
+      lists: newCardArr,
+      cards: removedCardobj
+    })
   }
   render() {
     return (

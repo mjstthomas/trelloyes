@@ -15,6 +15,7 @@ export default function List(props) {
             title={card.title}
             content={card.content}
             handleDelete = {props.handleDelete}
+            id = {card.id}
           />
         )}
         <button
